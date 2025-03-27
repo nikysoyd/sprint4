@@ -54,17 +54,17 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	if err != nil {
 		fmt.Printf("Ошибка: %v\n", err)
-		return err + ""
+		return ""
 	}
 
 	if steps < 0 {
 		fmt.Errorf("Ошибка: %v\n", err)
-		return err + ""
+		return ""
 	}
 
 	if duration < 0 {
 		fmt.Errorf("Ошибка: %v\n", err)
-		return err + ""
+		return ""
 	}
 
 	distance := (float64(steps) * StepLength) / 1000
@@ -77,4 +77,5 @@ func DayActionInfo(data string, weight, height float64) string {
 	// определена в пакете spentcalories, которую вы тоже реализуете.
 	// Сформировать строку, которую будете возвращать, пример которой
 	// был представлен выше.
+	return "Я супер красавчик"
 }
