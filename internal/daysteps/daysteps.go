@@ -69,4 +69,12 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	distance := (float64(steps) * StepLength) / 1000
 
+	// дальше надо дописать функцию WalkingSpentCalories
+	// задание ниже
+
+	// Вычислить количество калорий, потраченных на прогулке.
+	// Функция для вычисления калорий WalkingSpentCalories() будет
+	// определена в пакете spentcalories, которую вы тоже реализуете.
+	// Сформировать строку, которую будете возвращать, пример которой
+	// был представлен выше.
 }
