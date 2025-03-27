@@ -55,6 +55,10 @@ func parseTraining(data string) (steps int, trainingName string, duration time.D
 // steps int — количество совершенных действий (число шагов при ходьбе и беге).
 func distance(steps int) float64 {
 	// ваш код ниже
+	distance := float64(steps) * lenStep / mInKm
+
+	return distance
+
 }
 
 // meanSpeed возвращает значение средней скорости движения во время тренировки.
@@ -65,6 +69,15 @@ func distance(steps int) float64 {
 // duration time.Duration — длительность тренировки.
 func meanSpeed(steps int, duration time.Duration) float64 {
 	// ваш код ниже
+	if duration < 0 {
+		return 0
+	}
+
+	distance := distance(steps)
+
+	meanSpeed := distance / duration.Hours()
+
+	return meanSpeed
 }
 
 // ShowTrainingInfo возвращает строку с информацией о тренировке.
