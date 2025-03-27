@@ -88,6 +88,7 @@ func meanSpeed(steps int, duration time.Duration) float64 {
 // weight, height float64 — вес и рост пользователя.
 func TrainingInfo(data string, weight, height float64) string {
 	// ваш код ниже
+
 }
 
 // Константы для расчета калорий, расходуемых при беге.
@@ -105,7 +106,11 @@ const (
 // duration time.Duration — длительность тренировки.
 func RunningSpentCalories(steps int, weight float64, duration time.Duration) float64 {
 	// ваш код здесь
+	meanSpeed := meanSpeed(steps, duration)
 
+	RunningSpentCalories := ((runningCaloriesMeanSpeedMultiplier * meanSpeed) - runningCaloriesMeanSpeedShift) * weight
+
+	return RunningSpentCalories
 }
 
 // Константы для расчета калорий, расходуемых при ходьбе.
@@ -124,5 +129,9 @@ const (
 // height float64 — рост пользователя.
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) float64 {
 	// ваш код здесь
+	meanSpeed := meanSpeed(steps, duration)
 
+	WalkingSpentCalories := ((walkingCaloriesWeightMultiplier * weight) + (meanSpeed*meanSpeed/height)*walkingSpeedHeightMultiplier) * duration.Hours() * float64(minInH)
+
+	return WalkingSpentCalories
 }
