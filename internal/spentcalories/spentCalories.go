@@ -1,6 +1,9 @@
 package spentcalories
 
 import (
+	"fmt"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -11,8 +14,38 @@ const (
 	minInH  = 60   // количество минут в часе.
 )
 
-func parseTraining(data string) (int, string, time.Duration, error) {
+func parseTraining(data string) (steps int, trainingName string, duration time.Duration, err error) {
 	// ваш код ниже
+	infoTraining := strings.Split(data, ",")
+
+	if len(infoTraining) != 3 {
+
+		return 0, "", 0, fmt.Errorf("Error")
+	}
+
+	steps, err = strconv.Atoi(infoTraining[0])
+
+	if steps < 0 {
+		return 0, "", 0, fmt.Errorf("Ошибка в шагах")
+	}
+
+	if err != nil {
+		return 0, "", 0, fmt.Errorf("ошибка преобразования шагов: %v", err)
+	}
+
+	trainingName = infoTraining[1]
+
+	duration, err = time.ParseDuration(infoTraining[2])
+
+	if duration < 0 {
+		return 0, "", 0, fmt.Errorf("Ошибка в дурации")
+	}
+
+	if err != nil {
+		return 0, "", 0, fmt.Errorf("ошибка преобразования дурации: %v", err)
+	}
+
+	return steps, trainingName, duration, nil
 }
 
 // distance возвращает дистанцию(в километрах), которую преодолел пользователь за время тренировки.
