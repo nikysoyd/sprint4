@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Yandex-Practicum/go1fl-4-sprint-final/internal/spentcalories"
 )
 
 var (
@@ -69,13 +71,11 @@ func DayActionInfo(data string, weight, height float64) string {
 
 	distance := (float64(steps) * StepLength) / 1000
 
-	// дальше надо дописать функцию WalkingSpentCalories
-	// задание ниже
+	WalkingSpentCalories := spentcalories.WalkingSpentCalories(steps, weight, height, duration)
 
-	// Вычислить количество калорий, потраченных на прогулке.
-	// Функция для вычисления калорий WalkingSpentCalories() будет
-	// определена в пакете spentcalories, которую вы тоже реализуете.
-	// Сформировать строку, которую будете возвращать, пример которой
-	// был представлен выше.
-	return "Я супер красавчик"
+	counterSteps := fmt.Sprintf("Количество шагов: %d.", steps)
+	counterDist := fmt.Sprintf("Дистанция составила %.2f км.", distance)
+	counterCal := fmt.Sprintf("Вы сожгли %.2f ккал.", WalkingSpentCalories)
+	message := counterSteps + counterDist + counterCal
+	return message
 }

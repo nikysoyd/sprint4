@@ -88,7 +88,43 @@ func meanSpeed(steps int, duration time.Duration) float64 {
 // weight, height float64 — вес и рост пользователя.
 func TrainingInfo(data string, weight, height float64) string {
 	// ваш код ниже
+	steps, trainingName, duration, err := parseTraining(data)
 
+	if err != nil {
+		return fmt.Sprintf("Ошибка: %v", err)
+	}
+
+	var calories float64
+	var name string
+
+	switch trainingName {
+	case "Ходьба":
+		calories = WalkingSpentCalories(steps, weight, height, duration)
+		name = "Ходьба"
+	case "Бег":
+		calories = RunningSpentCalories(steps, weight, duration)
+		name = "Бег"
+	default:
+		return "Неизвестный тип тренировки"
+	}
+
+	speed := meanSpeed(steps, duration)
+	distance := distance(steps)
+
+	message := fmt.Sprintf(
+		"Тип тренировки: %s\n"+
+			"Длительность: %.2f ч.\n"+
+			"Дистанция: %.2f км.\n"+
+			"Скорость: %.2f км/ч.\n"+
+			"Сожгли калорий: %.2f",
+		name,
+		duration.Hours(), // преобразуем duration в часы
+		distance,
+		speed,
+		calories,
+	)
+
+	return message
 }
 
 // Константы для расчета калорий, расходуемых при беге.
