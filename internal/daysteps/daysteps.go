@@ -60,12 +60,12 @@ func DayActionInfo(data string, weight, height float64) string {
 	}
 
 	if steps < 0 {
-		fmt.Errorf("Ошибка: %v\n", err)
+		fmt.Errorf("Ошибка: %w\n", err)
 		return ""
 	}
 
 	if duration < 0 {
-		fmt.Errorf("Ошибка: %v\n", err)
+		fmt.Errorf("Ошибка: %w\n", err)
 		return ""
 	}
 
