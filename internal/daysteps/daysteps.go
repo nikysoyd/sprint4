@@ -33,7 +33,7 @@ func parsePackage(data string) (steps int, duration time.Duration, err error) {
 	duration, err = time.ParseDuration(parts[1])
 
 	if duration < 0 {
-		return 0, 0, fmt.Errorf("Ошибка в дурации")
+		return 0, 0, fmt.Errorf("Ошибка в дюрации")
 	}
 
 	if err != nil {
